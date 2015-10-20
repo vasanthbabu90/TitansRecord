@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +25,6 @@ import edu.waa.portal.service.ProfessorService;
 
 
 @Controller
-@RequestMapping("/professor")
 public class ProfessorController 
 {
 	
@@ -38,45 +38,40 @@ public class ProfessorController
 	public String getProfessorById(@RequestParam("id") int id,Model model)
 	{
 		 Professor professor = professorService.getProfessorById(id);
-		 model.addAttribute("professor", professor);
+		 model.addAttribute("editProfessor", professor);		 
 		 
 		 return "editProfessor";		
 		 
 	}
 	
-	@RequestMapping(value = "/professor", method = RequestMethod.POST)
-	public String saveProfessor(@Valid @ModelAttribute("professor") Professor professor , BindingResult result,RedirectAttributes redirectAttributes){
+	@RequestMapping(value = "/editProfessor", method = RequestMethod.POST)
+	public String saveProfessor(@Valid @ModelAttribute("editProfessor") Professor professor , BindingResult result){
 		
 		if(result.hasErrors()){
-			return "professor";
+			return "editProfessor";
 		}		
-		professorService.save(professor);
+		professorService.updateProfessor(professor);	 
 		
-		redirectAttributes.addAttribute("professor", professor);
-		
-		return "redirect:professorView";
+		return "redirect:/listProfessors";
 	}
 		  
-	  @RequestMapping(value="/professorView", method = RequestMethod.GET)
-	  public String professorView(Model model) throws IOException {
+	@RequestMapping(value = "/professorCourses", method = RequestMethod.GET)
+	public String getCoursesAssignedByProfId(@RequestParam("profid") int profid,Model model)
+	{			 
+		 Professor professor = professorService.getProfessorById(profid);
+		 model.addAttribute("professorName", professor.getFullName());
+		 
+		 return "forward:/coursesByProfessorName";				 
+	}
 
-		 Professor professor = (Professor)( ((ModelMap) model).get("professor") );
-
-	  	  if (professor == null)
-	  		throw new IOException("The Professor is Null, Try Again!");
-	  	  
-	        return "professorView";
-	  }
-	  
-		@RequestMapping(value = "/professorbyid", method = RequestMethod.GET)
-	public String getCoursesAssignedByProfId(@RequestParam("profId") int profId,Model model)
-		{
-			 List<CourseProfessor> coures = courseProfessorService.getCoursesAssigned(profId);
-			 model.addAttribute("professorCourses", coures);
-			 
-			 return "professorCourseView";		
-			 
-		}
+	@RequestMapping(value = "/coursesByProfessorName", method = RequestMethod.GET)
+	public String getCoursesByProfessorName(Model model)
+	{		   
+		 List<CourseProfessor> professorCourses = courseProfessorService.getCoursesAssigned(model.asMap().get("professorName").toString());
+		 model.addAttribute("professorCourses", professorCourses);
+		 
+		 return "listProfessorCourses";				 
+	}
 
 
 }

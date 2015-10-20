@@ -16,14 +16,22 @@ import edu.waa.portal.service.ProfessorService;
 @Service
 @Transactional
 public class ProfessorServiceImpl implements ProfessorService {
+	
 	@Resource(name = "profRepo")
 	ProfessorRepository professorRepository;
+
 	@Autowired
 	StudentGradeRepository studentGradeRepository;
 
 	@Override
 	public void save(Professor professor) {
 		professorRepository.save(professor);
+	}
+	
+	public void updateProfessor(Professor professor) {
+		
+		System.out.println(">>>>>>>>>>>>>>>>>" +  professor.getId() + "   " +professor.getFullName());
+		professorRepository.updateProfessor(professor.getId(),professor.getFullName(),professor.getGender(),professor.getEmail(),professor.getPhone());
 	}
 
 	@Override
@@ -36,6 +44,8 @@ public class ProfessorServiceImpl implements ProfessorService {
 		 
 		return professorRepository.getProfessorById(id);
 	}
+
+
 
 }
 

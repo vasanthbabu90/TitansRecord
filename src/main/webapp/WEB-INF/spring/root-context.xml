@@ -38,8 +38,7 @@
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>
-
-
+ 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>

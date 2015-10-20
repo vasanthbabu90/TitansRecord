@@ -13,7 +13,7 @@ import edu.waa.portal.service.CourseService;
 @Service
 public class CourseServiceImpl implements CourseService {
 
-	@Resource(name="courseRepo")
+	@Resource(name = "courseRepo")
 	CourseRepository courseRepo;
 
 	@Override
@@ -23,7 +23,7 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public List<Course> getAllCourses() {
-		return null;
+		return (List<Course>) courseRepo.findAll();
 	}
 
 }

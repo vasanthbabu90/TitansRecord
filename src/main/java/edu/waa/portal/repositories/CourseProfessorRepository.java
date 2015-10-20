@@ -12,8 +12,8 @@ import edu.waa.portal.model.CourseProfessor;
 import edu.waa.portal.model.Professor;
 
 @Repository
-public interface CourseProfessorRepository extends CrudRepository<CourseProfessor, Integer>{
+public interface CourseProfessorRepository extends CrudRepository<CourseProfessor, String>{
  
-	/*@Query("select cp from CourseProfessor cp where cp.profId = :profId")
-	public List<CourseProfessor> getCoursesAssigned(@Param("profId") int profId);*/
+	@Query("select c from CourseProfessor c where c.professorName = :professorName")
+	public List<CourseProfessor> getCoursesAssigned(@Param("professorName") String professorName);
 }

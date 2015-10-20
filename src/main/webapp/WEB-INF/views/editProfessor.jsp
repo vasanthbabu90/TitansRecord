@@ -7,11 +7,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <body>
+
 	<div style="width: 400px">
-		<form:form modelAttribute="editProfessor" action="professor/editProfessor"
-			method="post">
+		<form:form modelAttribute="editProfessor" action="editProfessor" >			 
 			<fieldset>
 				<legend>Professor's Information :</legend>
+				<form:hidden path="id"/>
 				<p>
 					<form:label path="fullName">
 						<spring:message code="professor.fullName" />
@@ -43,7 +44,7 @@
 							
 				<p id="buttons">
 					<input id="reset" type="reset" tabindex="4"> <input
-						id="submit" type="submit" tabindex="5" value="Save">
+						id="submit" type="submit" tabindex="5" value="Update">
 				</p>
 
 			</fieldset>

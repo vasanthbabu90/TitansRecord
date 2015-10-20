@@ -28,7 +28,6 @@ import edu.waa.portal.service.StudentGradeService;
  
 
 @Controller
-@RequestMapping(value = "rest/studentGrade")
 public class StudentGradeController {
 
 
@@ -36,7 +35,7 @@ public class StudentGradeController {
 	private StudentGradeService studentGradeService;
 	 
 
- 	@RequestMapping(value = "/saveGrade", method = RequestMethod.POST)
+ 	@RequestMapping(value = "/updatestudentgrade", method = RequestMethod.PUT)
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public String saveStudentGrade(@RequestBody List<StudentGrade> studentGrades, HttpServletRequest request) {
 		 
@@ -45,6 +44,7 @@ public class StudentGradeController {
  		studentGradeService.updateStudentGrade(grades);
  		
  		return "home";
+ 		
 	}
  	/*{
  		  "cars":[

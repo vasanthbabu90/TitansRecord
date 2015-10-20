@@ -27,9 +27,9 @@ public class StudentGradeServiceImpl implements StudentGradeService {
 	@Override
 	public void updateStudentGrade(Map<Integer, String> studentGrades) {
 
-		/*studentGrades.forEach((k, v) -> {
-			studentGradeRepository.updateStudentGrade(k);
-		});*/
+		studentGrades.forEach((k, v) -> {
+			studentGradeRepository.updateStudentGrade(k,v);
+		});
 
 	}
 

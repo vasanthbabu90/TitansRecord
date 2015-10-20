@@ -51,10 +51,10 @@ public class AdminController {
 	}
 
 	// professor add and display
-	@RequestMapping(value = "/listProfessor", method = RequestMethod.GET)
+	@RequestMapping(value = "/listProfessors", method = RequestMethod.GET)
 	public String allProfessors(Model model) {
 		model.addAttribute("professors", professorService.getAllProfessors());
-		return "listProfessor";
+		return "listProfessors";
 	}
 	@RequestMapping(value = "/addProfessor", method = RequestMethod.GET)
 	public String inputProfessor(@ModelAttribute("addProfessor") Professor professor) {
@@ -64,10 +64,15 @@ public class AdminController {
 	@RequestMapping(value = "/addProfessor", method = RequestMethod.POST)
 	public String addProfessor(@ModelAttribute("addProfessor") Professor professor) {
 		professorService.save(professor);
-		return "redirect:/listProfessor";
+		return "redirect:/listProfessors";
 	}
 
 	// course add and display
+	@RequestMapping(value = "/listCourses", method = RequestMethod.GET)
+	public String allCourses(Model model) {
+		model.addAttribute("courses", courseService.getAllCourses());
+		return "listCourses";
+	}
 	@RequestMapping(value = "/addCourse", method = RequestMethod.GET)
 	public String inputCourse(@ModelAttribute("addCourse") Course course) {
 		return "addCourse";
@@ -76,6 +81,6 @@ public class AdminController {
 	@RequestMapping(value = "/addCourse", method = RequestMethod.POST)
 	public String addCourse(@ModelAttribute("addCourse") Course course) {
 		courseService.save(course);
-		return "redirect:/home";
+		return "redirect:/listCourses";
 	}
 }

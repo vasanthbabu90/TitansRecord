@@ -24,6 +24,12 @@
 		<put-attribute name="title" value="Professors" />
 		<put-attribute name="body" value="/WEB-INF/views/addProfessor.jsp" />
 	</definition>
+	
+	<definition name="editProfessor" extends="baseLayout">
+		<put-attribute name="title" value="EditProfessor" />
+		<put-attribute name="body" value="/WEB-INF/views/editProfessor.jsp" />
+	</definition>
+	
 	<definition name="addCourse" extends="baseLayout">
 		<put-attribute name="title" value="Courses" />
 		<put-attribute name="body" value="/WEB-INF/views/addCourse.jsp" />
@@ -32,8 +38,12 @@
 		<put-attribute name="title" value="StudentsList" />
 		<put-attribute name="body" value="/WEB-INF/views/listStudents.jsp" />
 	</definition>
-	<definition name="listProfessor" extends="baseLayout">
+	<definition name="listProfessors" extends="baseLayout">
 		<put-attribute name="title" value="ProfessorList" />
-		<put-attribute name="body" value="/WEB-INF/views/listProfessor.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/listProfessors.jsp" />
+	</definition>
+	<definition name="listCourses" extends="baseLayout">
+		<put-attribute name="title" value="CourseList" />
+		<put-attribute name="body" value="/WEB-INF/views/listCourses.jsp" />
 	</definition>
 </tiles-definitions>
