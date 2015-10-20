@@ -24,6 +24,7 @@ import edu.waa.portal.service.ProfessorService;
 
 
 @Controller
+@RequestMapping("/professor")
 public class ProfessorController 
 {
 	
@@ -33,13 +34,13 @@ public class ProfessorController
 	@Autowired
 	CourseProfessorService courseProfessorService;
 	
-	@RequestMapping(value = "/professor", method = RequestMethod.GET)
+	@RequestMapping(value = "/editProfessor", method = RequestMethod.GET)
 	public String getProfessorById(@RequestParam("id") int id,Model model)
 	{
 		 Professor professor = professorService.getProfessorById(id);
 		 model.addAttribute("professor", professor);
 		 
-		 return "professor";		
+		 return "editProfessor";		
 		 
 	}
 	
