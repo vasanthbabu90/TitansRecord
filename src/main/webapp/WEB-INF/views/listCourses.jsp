@@ -8,28 +8,22 @@
 <html>
 <body>
 	<div>
-		<button>
-			<a href="addStudent">Add New Student</a>
+		<button class="first active">
+			<a href="addCourse">Add Course</a>
 		</button>
-		<br> <br>
+		<br>
+		<br>
 		<table border="1">
 			<tr>
-				<th>Student Name</th>
-				<th>Gender</th>
-				<th>Dob</th>
-				<th>PhoneNumber</th>
-				<th>Email</th>
-				<th>EntryDate</th>
-				<th>Action</th>
+				<th>Course Name</th>
+				<th>Course Description</th>
+				<th>Course Level</th>
 			</tr>
-			<c:forEach items="${students}" var="student">
+			<c:forEach items="${courses}" var="course">
 				<tr>
-					<td>${student.fullName}</td>
-					<td>${student.gender}</td>
-					<td>${student.dob}</td>
-					<td>${student.phone}</td>
-					<td>${student.email}</td>
-					<td>${student.entryDate}</td>
+					<td>${course.courseName}</td>
+					<td>${course.courseDescription}</td>
+					<td>${course.courseLevel}</td>
 					<th>Edit|Delete</th>
 				</tr>
 

@@ -7,6 +7,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <body>
+<div><button class="first active">
+			<a href="addProfessor">Add Professor</a>
+		</button>
+		<br>
+		<br>
 	<table border="1">
 		<tr>
 			<th>Professor Name</th>
@@ -26,5 +31,6 @@
 
 		</c:forEach>
 	</table>
+	</div>
 </body>
 </html>
