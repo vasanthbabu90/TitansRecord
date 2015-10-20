@@ -40,4 +40,8 @@
 		<put-attribute name="title" value="CourseList" />
 		<put-attribute name="body" value="/WEB-INF/views/listCourses.jsp" />
 	</definition>
+	<definition name="assignCourses" extends="baseLayout">
+		<put-attribute name="title" value="AssignCourses" />
+		<put-attribute name="body" value="/WEB-INF/views/assignCourses.jsp" />
+	</definition>
 </tiles-definitions>
