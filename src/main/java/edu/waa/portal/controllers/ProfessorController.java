@@ -49,7 +49,7 @@ public class ProfessorController
 		if(result.hasErrors()){
 			return "professor";
 		}		
-		professorService.Save(professor);
+		professorService.save(professor);
 		
 		redirectAttributes.addAttribute("professor", professor);
 		
@@ -67,7 +67,7 @@ public class ProfessorController
 	        return "professorView";
 	  }
 	  
-		@RequestMapping(value = "/professor", method = RequestMethod.GET)
+		@RequestMapping(value = "/professorbyid", method = RequestMethod.GET)
 	public String getCoursesAssignedByProfId(@RequestParam("profId") int profId,Model model)
 		{
 			 List<CourseProfessor> coures = courseProfessorService.getCoursesAssigned(profId);

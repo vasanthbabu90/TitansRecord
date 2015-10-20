@@ -1,12 +1,14 @@
 package edu.waa.portal.service;
 
 import java.util.List;
-import java.util.Map;
 
-import edu.waa.portal.model.*;
+import edu.waa.portal.model.Professor;
 
 public interface ProfessorService {
+	public void save(Professor professor);
+
+	public List<Professor> getAllProfessors();
 
 	public Professor getProfessorById(int id);
-	public void Save(Professor professor); 
+
 }

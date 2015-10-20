@@ -1,23 +1,42 @@
 package edu.waa.portal.model;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-public class Student {	
+public class Student {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	@NotEmpty
 	private String studentId;
 	private String fullName;
 	private Date dob;
 	private String gender;
 	private String email;
-	private List<Course> Courses;
-	
+
+	// private List<Course> Courses;
 	private Date entryDate;
-	
-//	@Valid
+
+	//@Valid
+/*	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "phoneId")*/
 	private String phone;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getPhone() {
 		return phone;
 	}

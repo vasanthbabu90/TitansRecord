@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+	"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="baseLayout" template="/WEB-INF/tiles/template/template.jsp">
+		<put-attribute name="title" value="Sample Title" />
+		<put-attribute name="header" value="/WEB-INF/tiles/template/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/template/footer.jsp" />
+	</definition>
+
+	<definition name="home" extends="baseLayout">
+		<put-attribute name="title" value="Titans" />
+		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
+	</definition>
+
+	<definition name="addStudent" extends="baseLayout">
+		<put-attribute name="title" value="Students" />
+		<put-attribute name="body" value="/WEB-INF/views/addStudent.jsp" />
+	</definition>
+	<definition name="addProfessor" extends="baseLayout">
+		<put-attribute name="title" value="Professors" />
+		<put-attribute name="body" value="/WEB-INF/views/addProfessor.jsp" />
+	</definition>
+	<definition name="addCourse" extends="baseLayout">
+		<put-attribute name="title" value="Courses" />
+		<put-attribute name="body" value="/WEB-INF/views/addCourse.jsp" />
+	</definition>
+	<definition name="listStudents" extends="baseLayout">
+		<put-attribute name="title" value="StudentsList" />
+		<put-attribute name="body" value="/WEB-INF/views/listStudents.jsp" />
+	</definition>
+	<definition name="listProfessor" extends="baseLayout">
+		<put-attribute name="title" value="ProfessorList" />
+		<put-attribute name="body" value="/WEB-INF/views/listProfessor.jsp" />
+	</definition>
+</tiles-definitions>

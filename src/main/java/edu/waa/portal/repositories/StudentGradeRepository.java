@@ -16,8 +16,8 @@ import edu.waa.portal.model.StudentCourseEnrolled;
 @Repository
 public interface StudentGradeRepository extends CrudRepository<StudentCourseEnrolled, Integer>{
 	
-	@Modifying
-	@Query("update StrudentCourseEnrolled sc set sc.grade = :grade where sc.studentid = :studentid")
-	public void updateStudentGrade(@Param("studentid") int id,@Param("grade") String grade);	
+	/*@Modifying
+	@Query("update StrudentCourseEnrolled sc where sc.studentid = :studentid")
+	public void updateStudentGrade(@Param("studentid") int id);*/	
 	 
 }

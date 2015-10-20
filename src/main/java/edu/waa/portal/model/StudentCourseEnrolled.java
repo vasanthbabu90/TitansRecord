@@ -21,7 +21,7 @@ public class StudentCourseEnrolled
 	private String grade;
 
 
-	public StudentCourseEnrolled()
+	/*public StudentCourseEnrolled()
 	{
 		
 	}
@@ -33,7 +33,7 @@ public class StudentCourseEnrolled
 		CourseId = courseId;
 		this.courseDescription = courseDescription;
 		this.studentID = studentID;
-	}
+	}*/
 
 
 

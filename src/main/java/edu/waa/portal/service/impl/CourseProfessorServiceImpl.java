@@ -27,7 +27,7 @@ public class CourseProfessorServiceImpl implements CourseProfessorService {
 	@Override
 	public List<CourseProfessor> getCoursesAssigned(int profId) {
 		 
-		return (List<CourseProfessor>)courseProfessorRepository.getCoursesAssigned(profId);
+		return null;// (List<CourseProfessor>)courseProfessorRepository.getCoursesAssigned(profId);
 	}
  
 }
