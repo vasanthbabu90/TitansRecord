@@ -14,9 +14,13 @@
 
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
+	<context:component-scan base-package="edu.waa.portal" />
+	<mvc:annotation-driven validator="validator" conversion-service="conversionService" />
+
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
+
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
@@ -25,48 +29,48 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
+		<property name="order" value="2" />
 	</bean>
 
+	<bean id="tilesViewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles3.TilesView" />
+		<property name="order" value="-2" />
+	</bean>
 
 	<context:component-scan base-package="edu.waa.portal" />
-	
 
 
-	<!--define datasource change to my sql-->
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/vasanth" />
-		<property name="username" value="vasanth" />
-		<property name="password" value="vasanth" />
-	</bean>
-
-	<!--Entity Manager Factory (id must be entityManagerFactory) -->
-	<bean
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-		id="entityManagerFactory">
-		<property name="packagesToScan" value="edu.waa.portal" />
-		<property name="dataSource" ref="dataSource" />
-		<property name="jpaProperties">
-			<props>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
-				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop> <!-- or specificaly specify 5 -->
-			</props>
-		</property>
-		<property name="persistenceProvider">
-			<bean class="org.hibernate.jpa.HibernatePersistenceProvider" />
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles/definitions/tile-definition.xml</value>
+			</list>
 		</property>
 	</bean>
 
-	<!-- enable the configuration of transactional behavior based on annotations -->
-	<bean class="org.springframework.orm.jpa.JpaTransactionManager"
-		id="transactionManager">
-		<property name="dataSource" ref="dataSource" />
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages" />
+	</bean>
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="validationMessageSource" ref="messageSource" />
 	</bean>
 
-	<tx:annotation-driven transaction-manager="transactionManager" />
+	<bean id="conversionService"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="formatters">
+			<set>
+				<!--bean class="mum.edu.formatter.DateFormatter"> <constructor-arg type="java.lang.String" 
+					value="MM-dd-yyyy" /> </bean -->
+				<bean class="edu.waa.portal.formatter.PhoneFormatter">
+				</bean>
 
-	<jpa:repositories base-package="edu.waa.portal.repositories" />
+			</set>
+		</property>
+	</bean>
 
 </beans>
