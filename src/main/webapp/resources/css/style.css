@@ -97,9 +97,10 @@ a {
 }
 
 #header {
-	height: 130px;
-	padding: 40px;
+	height: 100px;
+	padding: 10px;
 	position: relative;
+	background-color: #E0FFF0;
 }
 
 #logo {

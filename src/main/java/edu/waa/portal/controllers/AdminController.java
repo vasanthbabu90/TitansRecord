@@ -43,7 +43,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/addStudent", method = RequestMethod.POST)
-	public String addStudent(@Valid @ModelAttribute("addStudent") Student student, BindingResult result, Model model) {
+	public String addStudent(@Valid @ModelAttribute("addStudent") Student student,BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			System.out.println("errors >>>>>>>>" + result.getAllErrors().toString());
 			return "addStudent";

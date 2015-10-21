@@ -7,7 +7,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <body>
-	<div style="width: 400px">	
+	Language:
+	<a href="?language=en">English</a>|
+	<a href="?language=es">spanish</a>
+	<div style="width: 400px">
 		<form:form modelAttribute="addStudent" action="addStudent"
 			method="post">
 			<fieldset>

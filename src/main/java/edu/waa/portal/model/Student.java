@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import javax.validation.Valid;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -22,17 +23,19 @@ public class Student {
 	private int id;
 	@NotEmpty
 	private String studentId;
+	@NotEmpty
 	private String fullName;
 	private Date dob;
+	@NotEmpty
 	private String gender;
+	@Email
 	private String email;
 	// private List<Course> Courses;
 	private Date entryDate;
 
-	//@Valid
-/*	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "phoneId")*/
-	private String phone;
+	@Valid
+	@OneToOne(cascade = CascadeType.ALL)
+	private Phone phone;
 
 	public int getId() {
 		return id;
@@ -42,11 +45,11 @@ public class Student {
 		this.id = id;
 	}
 
-	public String getPhone() {
+	public Phone getPhone() {
 		return phone;
 	}
 
-	public void setPhone(String phone) {
+	public void setPhone(Phone phone) {
 		this.phone = phone;
 	}
 

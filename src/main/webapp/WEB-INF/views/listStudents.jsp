@@ -27,7 +27,7 @@
 					<td>${student.fullName}</td>
 					<td>${student.gender}</td>
 					<td>${student.dob}</td>
-					<td>${student.phone}</td>
+					<td>${student.phone.area}-${student.phone.prefix}-${student.phone.number}</td>
 					<td>${student.email}</td>
 					<td>${student.entryDate}</td>
 					<th>Edit|Delete</th>
