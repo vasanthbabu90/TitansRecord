@@ -20,10 +20,11 @@
 						<spring:message code="student.studentId" />
 					</form:label>
 					<form:input path="studentId" />
-				</p>
-				<div style="text-align: center;">
 					<form:errors path="studentId" cssStyle="color : red;" />
-				</div>
+				</p>
+				<%-- <div style="text-align: right;">
+					<form:errors path="studentId" cssStyle="color : red;" />
+				</div> --%>
 				<p>
 					<form:label path="fullName">
 						<spring:message code="student.fullName" />

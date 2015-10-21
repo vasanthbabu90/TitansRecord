@@ -53,12 +53,16 @@
 
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basename" value="messages" />
+		<property name="basename" value="classpath:messages" />
 	</bean>
 	<bean id="validator"
 		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
 		<property name="validationMessageSource" ref="messageSource" />
 	</bean>
+<!-- 	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="classpath:errorMessages" />
+	</bean> -->
 
 	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean"> 
 		<property name="formatters"> <set> <bean class="edu.waa.portal.formatter.PhoneFormatter"> 

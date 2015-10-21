@@ -21,16 +21,22 @@ import edu.waa.portal.service.StudentService;
 
 @Controller
 public class AdminController {
+/**
+ * Admin will access the student,professor and courses related
+ * stuffs, contains display,edit,add functionalities
+ */
+	
+	// service layer access objects
+	@Autowired
+	private StudentService studentService;
+	@Autowired
+	private ProfessorService professorService;
+	@Autowired
+	private CourseService courseService;
+	@Autowired
+	private CourseProfessorService courseProfessor;
 
-	@Autowired
-	StudentService studentService;
-	@Autowired
-	ProfessorService professorService;
-	@Autowired
-	CourseService courseService;
-	@Autowired
-	CourseProfessorService courseProfessor;
-
+	// Admin control for student records
 	@RequestMapping(value = "/listStudents", method = RequestMethod.GET)
 	public String allStudents(Model model) {
 		model.addAttribute("students", studentService.getAllStudents());
@@ -43,9 +49,8 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/addStudent", method = RequestMethod.POST)
-	public String addStudent(@Valid @ModelAttribute("addStudent") Student student,BindingResult result, Model model) {
+	public String addStudent(@Valid @ModelAttribute("addStudent") Student student, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			System.out.println("errors >>>>>>>>" + result.getAllErrors().toString());
 			return "addStudent";
 		}
 		model.addAttribute("student", student);
@@ -53,7 +58,7 @@ public class AdminController {
 		return "redirect:/listStudents";
 	}
 
-	// professor add and display
+	// admin control for professor add and display
 	@RequestMapping(value = "/listProfessors", method = RequestMethod.GET)
 	public String allProfessors(Model model) {
 		model.addAttribute("professors", professorService.getAllProfessors());
@@ -71,7 +76,7 @@ public class AdminController {
 		return "redirect:/listProfessors";
 	}
 
-	// course add and display
+	// Admin control for course add and display
 	@RequestMapping(value = "/listCourses", method = RequestMethod.GET)
 	public String allCourses(Model model) {
 		model.addAttribute("courses", courseService.getAllCourses());
@@ -89,7 +94,7 @@ public class AdminController {
 		return "redirect:/listCourses";
 	}
 
-	// courses and Professor
+	//admin control for assigning courses to professor
 	@RequestMapping(value = "/assignCourses", method = RequestMethod.GET)
 	public String listCoursesAndProfessors(@ModelAttribute("courseProf") CourseProfessor courseProf, Model model) {
 		model.addAttribute("availableCourses", courseService.getAllCourses());
@@ -101,8 +106,6 @@ public class AdminController {
 
 	@RequestMapping(value = "/assignCourses", method = RequestMethod.POST)
 	public String assignCourses(@Valid @ModelAttribute("courseProf") CourseProfessor courseProf, Model model) {
-		System.out.println(">>>>>>>>>>>>>>>>>>>>"+courseProf.getCourseName());
-		System.out.println(">>>>>>>>>>>>>>>>>>>>"+courseProf.getProfessorName());
 		courseProfessor.save(courseProf);
 		return "redirect:assignCourses";
 	}
