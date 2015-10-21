@@ -25,6 +25,7 @@ import edu.waa.portal.service.ProfessorService;
 
 
 @Controller
+//@RequestMapping(value = "/professor")
 public class ProfessorController 
 {
 	

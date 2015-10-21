@@ -16,7 +16,6 @@ public class PhoneFormatter implements Formatter<Phone> {
 
 	@Override
 	public Phone parse(String phoneNum, Locale arg1) throws ParseException {
-		System.out.println("I reached here >>>>>>>>>>>>on the formatter");
 		Phone phoneNumber = new Phone();
 		try {
 			int area = Integer.parseInt(phoneNum.substring(0, 3));

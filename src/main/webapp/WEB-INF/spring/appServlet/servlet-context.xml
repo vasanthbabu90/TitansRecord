@@ -13,9 +13,9 @@
 		infrastructure -->
 
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<mvc:annotation-driven />
+	<!-- <mvc:annotation-driven /> -->
 	<context:component-scan base-package="edu.waa.portal" />
-	<mvc:annotation-driven validator="validator"/>
+	<mvc:annotation-driven validator="validator" conversion-service="conversionService"  />
 
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
@@ -65,17 +65,17 @@
 		<property name="validationMessageSource" ref="messageSource" />
 	</bean>
 
-	<!-- <bean id="conversionService"
-		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
-		<property name="formatters">
-			<set>
-				bean class="mum.edu.formatter.DateFormatter"> <constructor-arg type="java.lang.String" 
-					value="MM-dd-yyyy" /> </bean
-				<bean class="edu.waa.portal.formatter.PhoneFormatter">
-				</bean>
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean"> 
+		<property name="formatters"> <set> <bean class="edu.waa.portal.formatter.PhoneFormatter"> 
+		</bean> </set> </property> </bean>
 
-			</set>
-		</property>
-	</bean> -->
-
+	<mvc:interceptors>
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="language" />
+		</bean>
+	</mvc:interceptors>
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="en_US" />
+	</bean>
 </beans>
