@@ -14,15 +14,17 @@
 	<http auto-config="true">
 				
 		<intercept-url pattern="/secured" access="hasRole('ROLE_USER')" /> 
-		<intercept-url pattern="/studentacesss**" access="hasRole('ROLE_STUDENT')" />
-		<intercept-url pattern="/professoraccess**" access="hasRole('ROLE_PROFESSOR')" />
-		<intercept-url pattern="/adminaccess**" access="hasRole('ROLE_ADMIN')" />
+		<!-- <intercept-url pattern="/student/editProfile" access="hasRole('ROLE_STUDENT')" />
+		<intercept-url pattern="/professor/editProfessor" access="hasRole('ROLE_PROFESSOR')" /> -->
+		<intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
 		
 		<form-login 
 		    login-page="/login" 
-		   
+		    default-target-url="/secured"  
 			authentication-failure-url="/accessdenied" 
 			 login-processing-url="/j_spring_security_check" />
+			 
+			 <csrf disabled="true"/>
 	</http>
 
 
@@ -33,11 +35,11 @@
     <authentication-provider>
         <jdbc-user-service data-source-ref="dataSource"
  
-       users-by-username-query="
+      
+      users-by-username-query="
          SELECT USERNAME, PASSWORD, ENABLED FROM USER WHERE USERNAME=?"	 
        authorities-by-username-query="
-        SELECT u.USERNAME, r.ROLENAME FROM USER u, USER_ROLE r WHERE u.ID = r.USERID AND u.USERNAME=? "/>
-        
+        SELECT u.USERNAME, r.ROLENAME FROM USER u, USERROLE r WHERE u.ID = r.USERID AND u.USERNAME=? "/>  
     </authentication-provider>
 </authentication-manager>
  

@@ -2,14 +2,19 @@ package edu.waa.portal.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
+import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlTransient;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -21,9 +26,14 @@ public class Student {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int studentId;
 	
+	@NotEmpty
 	private String fullName;
 	private Date dob;
+	
+	@NotEmpty
 	private String gender;
+	
+	@Email
 	private String email;
 	private String password;
 	private Date entryDate;
@@ -38,15 +48,10 @@ public class Student {
 	@JsonIgnore  //to make it deserilize not serilize
  	private MultipartFile productImage;
 	
-//	@Valid
-	//private String phone;
-/*	public String getPhone() {
-		return phone;
-	}
+	@Valid
+	@OneToOne(cascade = CascadeType.ALL)
+	private Phone phone;
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}*/
 
 	public Student()
 	{
@@ -68,6 +73,18 @@ public class Student {
 		this.userName = userName;
 		this.entryDate = entryDate;
 	}
+
+
+
+	public Phone getPhone() {
+		return phone;
+	}
+
+	public void setPhone(Phone phone) {
+		this.phone = phone;
+	}
+
+
 
 
 

@@ -49,7 +49,9 @@ public class StudentServiceImpl implements StudentService
 		List<Course> listOfCourses = studentEnrollRepository.getAllAvailableCourses();
 		for (Course course : listOfCourses) 
 		{
-			StringBuffer sb = new StringBuffer(course.getCourseLevel()).append("-").append(course.getCourseDescription());
+			StringBuffer sb = new StringBuffer(Integer.toString(course.getCourseLevel())).append("-").append(course.getCourseDescription());
+			System.out.println("stri buffer value "+sb.toString());
+			
 			listCourseName.add(sb.toString());
 			
 		}
@@ -98,6 +100,16 @@ public class StudentServiceImpl implements StudentService
 			return false;
 	}
 	
+	@Override
+	public void save(Student student) {
+		studentRepository.save(student);
+
+	}
+
+	@Override
+	public List<Student> getAllStudents() {
+		return (List<Student>) studentRepository.findAll();
+	}
 	
 
 }

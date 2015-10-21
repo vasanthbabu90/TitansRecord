@@ -22,5 +22,8 @@ public interface StudentService
 	public List<StudentCourseEnrolled> getStudentEnrolledCourses(int studentId);
 	
 	public boolean doesUserNameExist(String userName);
+	
+	public void save(Student student);
+public List<Student> getAllStudents();
 
 }

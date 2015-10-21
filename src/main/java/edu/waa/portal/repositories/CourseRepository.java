@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import edu.waa.portal.model.Course;
 
-@Repository
+@Repository("courseRepo")
 public interface CourseRepository extends CrudRepository<Course, Integer>{
 
 }

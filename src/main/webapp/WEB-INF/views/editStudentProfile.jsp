@@ -133,6 +133,8 @@
 
 		</fieldset>
 	</form:form>
+	
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" disabled="disabled"/>
 
 
 </body>

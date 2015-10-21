@@ -9,33 +9,34 @@ import org.springframework.stereotype.Service;
 
 import edu.waa.portal.model.Course;
 import edu.waa.portal.model.Student;
+import edu.waa.portal.model.User;
+import edu.waa.portal.model.UserRole;
 import edu.waa.portal.repositories.CourseRepository;
+import edu.waa.portal.repositories.LoginRepository;
 import edu.waa.portal.repositories.StudentRepository;
 
 @Service
 public class InitDB 
 {
-	@Autowired
-	StudentRepository studentRepository;
 	
 	@Autowired
-	CourseRepository courseRepository;
+	LoginRepository loginRepository;
+	
+	@Autowired
+	StudentRepository studentRepository;
 	
 	@PostConstruct
 	public void init()
 	{
-		Date date = new Date(2015, 05, 22); //my sql date formate 2015-05-02 (yy-mm-dd)
-		Student student = new Student("Nadal", date, "male", "nadal.gmail.com","12345","vasanth", date);
-		Student student1 = new Student("Nadal", date, "male", "nadal.gmail.com","12345","Nadal", date);
-		studentRepository.save(student);
-		studentRepository.save(student1);
+		User user = new User("roger", "12345");
+		UserRole userRole = new UserRole();
 		
-			Course course1 = new Course("BigData", "BigData", "425");
-			Course course2 = new Course("SystemAnalysis", "SystemAnalysis", "435");
-						
-			courseRepository.save(course1);
-			courseRepository.save(course2);
-			
+		userRole.setRolename("ROLE_ADMIN");
+		userRole.setUser(user);
+		
+		user.setUserRole(userRole);
+		loginRepository.save(user);
+		
 		
 		
 		

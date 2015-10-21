@@ -1,27 +1,29 @@
 package edu.waa.portal.serviceImpl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import edu.waa.portal.model.Course;
 import edu.waa.portal.repositories.CourseRepository;
 import edu.waa.portal.service.CourseService;
 
 @Service
-@Transactional
-public class CourseServiceImpl implements CourseService
-{
+public class CourseServiceImpl implements CourseService {
 
-	@Autowired
-	CourseRepository courseRepository;
+	@Resource(name = "courseRepo")
+	CourseRepository courseRepo;
+
 	@Override
-	public void saveCourse(Course course) 
-	{
-		System.out.println("inside service ");
-		courseRepository.save(course);
-		
+	public void save(Course course) {
+		courseRepo.save(course);
 	}
-	
+
+	@Override
+	public List<Course> getAllCourses() {
+		return (List<Course>) courseRepo.findAll();
+	}
 
 }

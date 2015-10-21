@@ -13,7 +13,7 @@
 		infrastructure -->
 
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<mvc:annotation-driven validator="validator"  />
+	<mvc:annotation-driven validator="validator"  conversion-service="conversionService" />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
@@ -32,12 +32,27 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
+	<property name="order" value="2" />
 	</bean>
 
 
 	<context:component-scan base-package="edu.waa.portal" />
 	
-
+	<bean id="tilesViewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles3.TilesView" />
+		<property name="order" value="-2" />
+	</bean>
+		<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles/definitions/tile-definition.xml</value>
+			</list>
+		</property>
+	</bean>
+	
 
 	<!--define datasource change to my sql-->
 	<bean id="dataSource"
@@ -56,7 +71,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="jpaProperties">
 			<props>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop> <!-- or specificaly specify 5 -->
 			</props>
@@ -75,7 +90,7 @@
 	<!-- custom validation  -->
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basename" value="classpath:errorMessages" />
+		<property name="basename" value="classpath:messages" />
 	</bean>
 
 	<bean id="validator"
@@ -83,7 +98,20 @@
 		<property name="validationMessageSource" ref="messageSource" />
 	</bean>
 	
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean"> 
+		<property name="formatters"> <set> <bean class="edu.waa.portal.formatter.PhoneFormatter"> 
+		</bean> </set> </property> </bean>
 
+	<mvc:interceptors>
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="language" />
+		</bean>
+	</mvc:interceptors>
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="en_US" />
+	</bean>
+	
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<jpa:repositories base-package="edu.waa.portal.repositories" />

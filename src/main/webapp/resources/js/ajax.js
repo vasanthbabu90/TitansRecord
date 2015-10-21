@@ -35,6 +35,7 @@ function updateStudentProfileAjaxCall(){
 		type: 'POST',
 		data: send,
 		contentType: 'application/json',
+		async: false,
 		//dataType: 'json',
 		
 		success: function(response) {

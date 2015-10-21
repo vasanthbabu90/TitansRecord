@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+	"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="baseLayout" template="/WEB-INF/tiles/template/template.jsp">
+		<put-attribute name="title" value="Sample Title" />
+		<put-attribute name="header" value="/WEB-INF/tiles/template/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/template/footer.jsp" />
+	</definition>
+	<!-- Home configuration -->
+	<definition name="homeLayout" template="/WEB-INF/tiles/template/hometemplate.jsp">
+		<put-attribute name="title" value="Sample Title" />
+		<put-attribute name="header" value="/WEB-INF/tiles/template/homeheader.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/template/footer.jsp" />
+	</definition>
+	
+	<!-- Student configuration -->
+	<definition name="studentLayout" template="/WEB-INF/tiles/template/studenttemplate.jsp">
+		<put-attribute name="title" value="Sample Title" />
+		<put-attribute name="header" value="/WEB-INF/tiles/template/studentheader.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/template/footer.jsp" />
+	</definition>
+	
+	<!-- professor -->
+	<definition name="professorLayout" template="/WEB-INF/tiles/template/professortemplate.jsp">
+		<put-attribute name="title" value="Sample Title" />
+		<put-attribute name="header" value="/WEB-INF/tiles/template/professorheader.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/template/footer.jsp" />
+	</definition>
+	
+<definition name="viewProfessorProfile" extends="professorLayout">
+		<put-attribute name="title" value="Titans" />
+		<put-attribute name="body" value="/WEB-INF/views/viewProfessorProfile.jsp" />
+	</definition>
+	
+
+<!-- home page -->
+	<definition name="home" extends="homeLayout">
+		<put-attribute name="title" value="Titans" />
+		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
+	</definition>
+	
+<!-- Login page configuration page -->
+<definition name="LoginPage" extends="homeLayout">
+		<put-attribute name="title" value="Titans" />
+		<put-attribute name="body" value="/WEB-INF/views/LoginPage.jsp" />
+	</definition>
+	
+	<!-- security login page -->
+	<definition name="login" extends="homeLayout">
+		<put-attribute name="title" value="Titans" />
+		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />
+	</definition>
+
+	<!-- student files -->
+<definition name="viewStudentProfile" extends="studentLayout">
+		<put-attribute name="title" value="Titans" />
+		<put-attribute name="body" value="/WEB-INF/views/viewStudentProfile.jsp" />
+	</definition>
+	
+	<definition name="editStudentProfile" extends="studentLayout">
+		<put-attribute name="title" value="Titans" />
+		<put-attribute name="body" value="/WEB-INF/views/editStudentProfile.jsp" />
+	</definition>
+
+<definition name="enrollCourse" extends="studentLayout">
+		<put-attribute name="title" value="Titans" />
+		<put-attribute name="body" value="/WEB-INF/views/enrollCourse.jsp" />
+	</definition>
+
+
+
+
+
+
+
+<definition name="adminhome" extends="baseLayout">
+		<put-attribute name="title" value="Titans" />
+		<put-attribute name="body" value="/WEB-INF/views/adminhome.jsp" />
+	</definition>
+
+
+
+
+
+
+	<definition name="addStudent" extends="baseLayout">
+		<put-attribute name="title" value="Students" />
+		<put-attribute name="body" value="/WEB-INF/views/addStudent.jsp" />
+	</definition>
+	<definition name="addProfessor" extends="baseLayout">
+		<put-attribute name="title" value="Professors" />
+		<put-attribute name="body" value="/WEB-INF/views/addProfessor.jsp" />
+	</definition>
+	
+	<definition name="editProfessor" extends="baseLayout">
+		<put-attribute name="title" value="EditProfessor" />
+		<put-attribute name="body" value="/WEB-INF/views/editProfessor.jsp" />
+	</definition>
+	
+	 <definition name="listProfessorCourses" extends="baseLayout">
+		<put-attribute name="title" value="ProfessorCourses" />
+		<put-attribute name="body" value="/WEB-INF/views/listProfessorCourses.jsp" />
+	</definition>
+	
+	<definition name="addCourse" extends="baseLayout">
+		<put-attribute name="title" value="Courses" />
+		<put-attribute name="body" value="/WEB-INF/views/addCourse.jsp" />
+	</definition>
+	
+	<definition name="listStudents" extends="baseLayout">
+		<put-attribute name="title" value="StudentsList" />
+		<put-attribute name="body" value="/WEB-INF/views/listStudents.jsp" />
+	</definition>
+	<definition name="listProfessors" extends="baseLayout">
+		<put-attribute name="title" value="ProfessorList" />
+		<put-attribute name="body" value="/WEB-INF/views/listProfessors.jsp" />
+	</definition>
+	<definition name="listCourses" extends="baseLayout">
+		<put-attribute name="title" value="CourseList" />
+		<put-attribute name="body" value="/WEB-INF/views/listCourses.jsp" />
+	</definition>
+	<definition name="assignCourses" extends="baseLayout">
+		<put-attribute name="title" value="AssignCourses" />
+		<put-attribute name="body" value="/WEB-INF/views/assignCourses.jsp" />
+	</definition>
+</tiles-definitions>

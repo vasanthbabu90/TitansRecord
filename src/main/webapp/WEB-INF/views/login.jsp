@@ -4,7 +4,7 @@
 
 <html>
 	<body>
-		<h1 id="banner">Login to Security Demo</h1>  
+		<h1 id="banner">Login to Admin Security </h1>  
 		<form name="f" action="<c:url value='j_spring_security_check'/>"
 					method="POST">
 			<table>
@@ -24,7 +24,7 @@
 				</tr>
 			</table>
 			
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
 			
 		</form>
 	</body>

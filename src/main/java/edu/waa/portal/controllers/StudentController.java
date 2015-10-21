@@ -29,7 +29,7 @@ import edu.waa.portal.service.StudentService;
 
 @Controller
 @RequestMapping(value = "/student")
-@SessionAttributes("studentID")
+@SessionAttributes("USERID")
 public class StudentController {
 
 	
@@ -56,9 +56,9 @@ public class StudentController {
 		courseIds.add("702-SystemAnalysis");*/
 		
 		courseIds = studentService.getAvailableCourses();
-		/*for (String string : courseIds) {
-			System.out.println(string);
-		}*/
+		for (String string : courseIds) {
+			System.out.println("course Id "+ string);
+		}
 		model.addAttribute("courseIds", courseIds);
 		
 		return "enrollCourse";
@@ -69,11 +69,11 @@ public class StudentController {
 	public @ResponseBody String enrollCourses( @RequestBody String courseIdsandDesc, Model model)
 	{
 		
-		System.out.println(model.asMap().get("studentID"));
+		System.out.println(model.asMap().get("USERID"));
 		System.out.println("courseIdsandDesc" +courseIdsandDesc.trim());
-		System.out.println(" inside enrollCourses "+ ((ModelMap) model).get("studentID"));
+		System.out.println(" inside enrollCourses "+ ((ModelMap) model).get("USERID"));
 		
-		Integer studentId = (Integer) (model.asMap().get("studentID"));
+		Integer studentId = (Integer) (model.asMap().get("USERID"));
 		String returnText = "";
 		List<Integer> courseIds = new ArrayList<Integer>();
 		List<String> courseDesc = new ArrayList<String>();
@@ -109,32 +109,15 @@ public class StudentController {
 		
 	}
 	
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String addNew(@ModelAttribute("student") Student student, Model model)
-	{
-	
-		model.addAttribute("student", student);
-		return "add";
-	}
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String addNewRecord( @Valid @ModelAttribute("student") Student student, BindingResult result, Model model)
-	{
-		System.out.println("student "+student.getUserName());
-		userNameValidator.validate(student, result);
-		System.out.println("=================>"+result);
-		if(result.hasErrors()){
-			return "add";
-		}
-		else
-			return "dsvdfv";
-	}
 	
 	
 	@RequestMapping(value = "/editProfile", method = RequestMethod.GET)
 	public String editStudentProfile(@ModelAttribute("student") Student student, Model model)
 	{
-		System.out.println("student id in session "+ model.asMap().get("studentID"));
-		 student = studentService.getStudentProfile(1);
+		System.out.println("student id in session "+ model.asMap().get("USERID"));
+		Integer studentId = (Integer) (model.asMap().get("USERID"));
+		
+		 student = studentService.getStudentProfile(studentId);
 		 System.out.println("imageUploadedOrNot "+student.getImageUploadedOrNot());
 		model.addAttribute("student", student);
 		return "editStudentProfile";
@@ -195,8 +178,10 @@ public class StudentController {
 	@RequestMapping(value = "/viewProfile", method = RequestMethod.GET)
 	public String viewStudentProfile(@ModelAttribute("student") Student student, Model model)
 	{
-	
-		 student = studentService.getStudentProfile(1);
+		System.out.println("session student ID "+model.asMap().get("USERID"));
+		int studentID = (int) model.asMap().get("USERID");
+		
+		 student = studentService.getStudentProfile(studentID);
 		 System.out.println("imageUploadedOrNot "+student.getImageUploadedOrNot());
 		model.addAttribute("student", student); //u need to set attribute else it will be problem
 		return "viewStudentProfile";
@@ -207,7 +192,10 @@ public class StudentController {
 	{
 	
 		System.out.println("inside enroll courses ");
-		List<StudentCourseEnrolled> listOfCoursesEnrolled = studentService.getStudentEnrolledCourses(1001); //change this to session 
+		System.out.println("session student ID "+model.asMap().get("USERID"));
+		int studentID = (int) model.asMap().get("USERID");
+		
+		List<StudentCourseEnrolled> listOfCoursesEnrolled = studentService.getStudentEnrolledCourses(studentID); //change this to session 
 		
 		for (StudentCourseEnrolled studentCourseEnrolled : listOfCoursesEnrolled) 
 		{

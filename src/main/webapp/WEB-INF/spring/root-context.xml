@@ -5,4 +5,13 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
+		<!--define datasource change to my sql-->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/vasanth" />
+		<property name="username" value="vasanth" />
+		<property name="password" value="vasanth" />
+	</bean>
+	
 </beans>
