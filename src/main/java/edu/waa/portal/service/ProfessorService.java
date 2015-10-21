@@ -13,5 +13,7 @@ public interface ProfessorService {
 	public List<Professor> getAllProfessors();
 
 	public Professor getProfessorById(int id);
+	
+	public void deleteProfessor(int id);
 
 }

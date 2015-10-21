@@ -16,13 +16,14 @@
 				<th>Course Name</th>
 				<th>Start Date</th>
 				<th>End Date</th>
+				<th>Action</th>
 			</tr>
 			<c:forEach items="${professorCourses}" var="course">
 				<tr>
 					<td>${course.professorName}</td>
 					<td>${course.courseName}</td>
-					<td>${course.startDate}</td>
-					<td>${course.endDate}</td>
+					<td>${course.courseStartDate}</td>
+					<td>${course.courseEndDate}</td>
 					<th>Edit|Delete</th>
 				</tr>
 			</c:forEach>

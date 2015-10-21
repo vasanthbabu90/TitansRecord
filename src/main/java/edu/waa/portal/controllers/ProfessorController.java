@@ -53,21 +53,21 @@ public class ProfessorController
 		professorService.updateProfessor(professor);	 
 		
 		return "redirect:/listProfessors";
+	}	
+	
+	@RequestMapping(value = "/deleteProfessor", method = RequestMethod.GET)
+	public String deleteProfessor(@RequestParam("id") int id){
+				
+		professorService.deleteProfessor(id);
+		
+		return "redirect:/listProfessors";
 	}
 		  
-	@RequestMapping(value = "/professorCourses", method = RequestMethod.GET)
-	public String getCoursesAssignedByProfId(@RequestParam("profid") int profid,Model model)
-	{			 
-		 Professor professor = professorService.getProfessorById(profid);
-		 model.addAttribute("professorName", professor.getFullName());
-		 
-		 return "forward:/coursesByProfessorName";				 
-	}
-
+		  
 	@RequestMapping(value = "/coursesByProfessorName", method = RequestMethod.GET)
-	public String getCoursesByProfessorName(Model model)
-	{		   
-		 List<CourseProfessor> professorCourses = courseProfessorService.getCoursesAssigned(model.asMap().get("professorName").toString());
+	public String getCoursesByProfessorName(@RequestParam("name") String name, Model model)
+	{	
+		 List<CourseProfessor> professorCourses = courseProfessorService.getCoursesAssigned(name);
 		 model.addAttribute("professorCourses", professorCourses);
 		 
 		 return "listProfessorCourses";				 

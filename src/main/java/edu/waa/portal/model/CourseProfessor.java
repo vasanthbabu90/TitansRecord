@@ -57,4 +57,5 @@ public class CourseProfessor {
 	public void setCourseEndDate(Date courseEndDate) {
 		this.courseEndDate = courseEndDate;
 	}
-}
+
+} 

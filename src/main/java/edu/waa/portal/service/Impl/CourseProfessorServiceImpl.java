@@ -1,12 +1,10 @@
-package edu.waa.portal.service.impl;
+package edu.waa.portal.service.Impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.stereotype.Service;
 
 import edu.waa.portal.model.CourseProfessor;
@@ -28,13 +26,6 @@ public class CourseProfessorServiceImpl implements CourseProfessorService {
 	@Override
 	public List<CourseProfessor> getAllAssigned() {
 		return (List<CourseProfessor>) courseProfRepo.findAll();
-	}
-
-	@Override
-	public List<CourseProfessor> getCoursesAssigned(String professorName) {
-
-		return (List<CourseProfessor>) courseProfRepo
-				.getCoursesAssigned(professorName);
 	}
 
 }

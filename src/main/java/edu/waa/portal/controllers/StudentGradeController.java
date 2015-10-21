@@ -12,6 +12,7 @@ import org.hibernate.transform.ToListResultTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import edu.waa.portal.model.StudentCourseEnrolled;
 import edu.waa.portal.model.StudentGrade;
+import edu.waa.portal.service.CourseService;
 import edu.waa.portal.service.ProfessorService;
 import edu.waa.portal.service.StudentGradeService;
  
@@ -33,6 +35,9 @@ public class StudentGradeController {
 
 	@Autowired
 	private StudentGradeService studentGradeService;
+	
+	@Autowired
+	private CourseService courseService;
 	 
 
  	@RequestMapping(value = "/updatestudentgrade", method = RequestMethod.PUT)
@@ -46,21 +51,13 @@ public class StudentGradeController {
  		return "home";
  		
 	}
- 	/*{
- 		  "cars":[
- 		    {
- 		      "color":"Blue",
- 		      "miles":100,
- 		      "vin":"1234"
- 		    },
- 		    {
- 		      "color":"Red",
- 		      "miles":400,
- 		      "vin":"1235"
- 		    }
- 		  ] 		
- 		}*/
-
+	
+ 	@RequestMapping(value = "/listCoursesForGrade", method = RequestMethod.GET)
+	public String allCoursesForGrade(Model model) {
+		model.addAttribute("courses", courseService.getAllCourses());
+		return "listCoursesForGrade";
+	}
+ 	
 	@ExceptionHandler(Exception.class)
 	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason="Internal server error")
 	public void handleServerErrors(Exception ex) {	}

@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.waa.portal.model.Course;
+import edu.waa.portal.model.CourseProfessor;
 import edu.waa.portal.model.Professor;
 import edu.waa.portal.model.Student;
+import edu.waa.portal.service.CourseProfessorService;
 import edu.waa.portal.service.CourseService;
 import edu.waa.portal.service.ProfessorService;
 import edu.waa.portal.service.StudentService;
@@ -26,8 +28,9 @@ public class AdminController {
 	ProfessorService professorService;
 	@Autowired
 	CourseService courseService;
+	@Autowired
+	CourseProfessorService courseProfessor;
 
-	// students add and display
 	@RequestMapping(value = "/listStudents", method = RequestMethod.GET)
 	public String allStudents(Model model) {
 		model.addAttribute("students", studentService.getAllStudents());
@@ -56,6 +59,7 @@ public class AdminController {
 		model.addAttribute("professors", professorService.getAllProfessors());
 		return "listProfessors";
 	}
+
 	@RequestMapping(value = "/addProfessor", method = RequestMethod.GET)
 	public String inputProfessor(@ModelAttribute("addProfessor") Professor professor) {
 		return "addProfessor";
@@ -73,6 +77,7 @@ public class AdminController {
 		model.addAttribute("courses", courseService.getAllCourses());
 		return "listCourses";
 	}
+
 	@RequestMapping(value = "/addCourse", method = RequestMethod.GET)
 	public String inputCourse(@ModelAttribute("addCourse") Course course) {
 		return "addCourse";
@@ -82,5 +87,21 @@ public class AdminController {
 	public String addCourse(@ModelAttribute("addCourse") Course course) {
 		courseService.save(course);
 		return "redirect:/listCourses";
+	}
+
+	// courses and Professor
+	@RequestMapping(value = "/assignCourses", method = RequestMethod.GET)
+	public String listCoursesAndProfessors(@ModelAttribute("courseProf") CourseProfessor courseProf, Model model) {
+		model.addAttribute("availableCourses", courseService.getAllCourses());
+		model.addAttribute("availableProfessors", professorService.getAllProfessors());
+		model.addAttribute("courseProfessorList", courseProfessor.getAllAssigned());
+
+		return "assignCourses";
+	}
+
+	@RequestMapping(value = "/assignCourses", method = RequestMethod.POST)
+	public String assignCourses(@Valid @ModelAttribute("courseProf") CourseProfessor courseProf, Model model) {
+		courseProfessor.save(courseProf);
+		return "redirect:assignCourses";
 	}
 }

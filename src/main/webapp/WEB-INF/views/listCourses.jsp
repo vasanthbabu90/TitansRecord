@@ -11,13 +11,14 @@
 		<button class="first active">
 			<a href="addCourse">Add Course</a>
 		</button>
-		<br>
-		<br>
+		<br> <br>
 		<table border="1">
 			<tr>
 				<th>Course Name</th>
 				<th>Course Description</th>
 				<th>Course Level</th>
+				<th>Action</th>
+
 			</tr>
 			<c:forEach items="${courses}" var="course">
 				<tr>

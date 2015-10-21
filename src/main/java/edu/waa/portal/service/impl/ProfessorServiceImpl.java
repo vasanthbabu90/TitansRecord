@@ -45,6 +45,11 @@ public class ProfessorServiceImpl implements ProfessorService {
 		return professorRepository.getProfessorById(id);
 	}
 
+	@Override
+	public void deleteProfessor(int id) {
+		professorRepository.delete(id);		
+	}
+
 
 
 }
