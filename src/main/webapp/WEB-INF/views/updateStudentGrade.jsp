@@ -7,25 +7,30 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <body>
-	<div style="width: 400px">
-	<form:form>
-    <fieldset>
-        <legend>Student Grade Report</legend>
-  		      
-          <p>
-            <label for="studentgrade"><spring:message code="student.grade.label"/></label>
-            <form:input path="studentgrade" type="file" />
- 	
-      	  </p>
- 
-			<p id="buttons">
-				<input id="reset" type="reset" tabindex="4"> <input
-					id="submit" type="submit" tabindex="5" value="Update Grades" onclick="studentgradeupdate();"> 
-			</p>
+	<div>
+		<form:form modelAttribute="studentEnrolled" action="editStudentGrade">
+			<fieldset>
+				<legend>Update Grade</legend>
+				<form:hidden path="enrolledId" />
+				<form:hidden path="courseIdLevel" />
 
-		</fieldset>
-</form:form>        
- 
+				<p>
+					<form:label path="studentID">
+						<spring:message code="student.studentId" />
+					</form:label>
+					<form:input path="studentID" />
+				</p>
+				<p>
+					<label for="grade"><spring:message
+							code="student.grade.label" /></label>
+					<form:input path="grade" />
+				</p>
+				<p id="buttons">
+					<input id="submit" type="submit" tabindex="5" value="Update">
+				</p>
+			</fieldset>
+		</form:form>
+
 	</div>
 </body>
 </html>

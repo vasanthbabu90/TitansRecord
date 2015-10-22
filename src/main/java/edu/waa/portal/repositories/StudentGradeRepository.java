@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.repository.query.Param;
 
 import edu.waa.portal.model.Course;
+import edu.waa.portal.model.CourseProfessor;
 import edu.waa.portal.model.Professor;
 import edu.waa.portal.model.StudentCourseEnrolled;
  
@@ -19,7 +20,10 @@ public interface StudentGradeRepository extends CrudRepository<StudentCourseEnro
 	
 	@Modifying
 	@Transactional
-	@Query("update StudentCourseEnrolled s set s.grade=:grade where s.studentID = :studentID")
-	public void updateStudentGrade(@Param("studentID") int studentID,@Param("grade") String grade);	
+	@Query("update StudentCourseEnrolled s set s.grade=:grade where s.enrolledId = :enrolledId")
+	public void updateStudentGrade(@Param("enrolledId") int enrolledId,@Param("grade") String grade);
+
+	@Query("select s from StudentCourseEnrolled s where s.courseIdLevel = :courseIdLevel")
+	public List<StudentCourseEnrolled> getStudentsWithCourse(@Param("courseIdLevel") int courseIdLevel);
 	 
 }

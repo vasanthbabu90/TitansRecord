@@ -6,6 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class CourseProfessor {
@@ -13,9 +17,19 @@ public class CourseProfessor {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
+	@NotEmpty
 	private String courseName;
+	
+	@NotEmpty
 	private String professorName;
+	
+	@NotNull
+	@DateTimeFormat(pattern="MM/dd/yyyy")
 	private Date courseStartDate;
+	
+	@NotNull
+	@DateTimeFormat(pattern="MM/dd/yyyy")
 	private Date courseEndDate;
 
 	public int getId() {

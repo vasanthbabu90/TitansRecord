@@ -46,7 +46,7 @@ public class ProfessorController
 	}
 	
 	@RequestMapping(value = "/editProfessor", method = RequestMethod.POST)
-	public String saveProfessor(@Valid @ModelAttribute("editProfessor") Professor professor , BindingResult result){
+	public String editProfessor(@Valid @ModelAttribute("editProfessor") Professor professor , BindingResult result){
 		
 		if(result.hasErrors()){
 			return "editProfessor";

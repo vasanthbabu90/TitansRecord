@@ -24,22 +24,35 @@
 		<put-attribute name="title" value="Professors" />
 		<put-attribute name="body" value="/WEB-INF/views/addProfessor.jsp" />
 	</definition>
-	
+
 	<definition name="editProfessor" extends="baseLayout">
 		<put-attribute name="title" value="EditProfessor" />
 		<put-attribute name="body" value="/WEB-INF/views/editProfessor.jsp" />
 	</definition>
-	
-	 <definition name="listProfessorCourses" extends="baseLayout">
+
+	<definition name="listProfessorCourses" extends="baseLayout">
 		<put-attribute name="title" value="ProfessorCourses" />
-		<put-attribute name="body" value="/WEB-INF/views/listProfessorCourses.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/listProfessorCourses.jsp" />
 	</definition>
-	
+
 	<definition name="addCourse" extends="baseLayout">
 		<put-attribute name="title" value="Courses" />
 		<put-attribute name="body" value="/WEB-INF/views/addCourse.jsp" />
 	</definition>
-	
+
+	<definition name="listStudentsForGrade" extends="baseLayout">
+		<put-attribute name="title" value="StudentsWithCourseForGrade" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/listStudentsForGrade.jsp" />
+	</definition>
+
+	<definition name="updateStudentGrade" extends="baseLayout">
+		<put-attribute name="title" value="UpdateStudentGrade" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/updateStudentGrade.jsp" />
+	</definition>
+
 	<definition name="listStudents" extends="baseLayout">
 		<put-attribute name="title" value="StudentsList" />
 		<put-attribute name="body" value="/WEB-INF/views/listStudents.jsp" />

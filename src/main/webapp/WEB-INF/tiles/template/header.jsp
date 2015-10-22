@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 
 
-	<h2 style="color: red; text-align: center;">Titans Record</h2>
+<h2 style="color: red; text-align: center;">Titans Record</h2>
 
 <br>
 <div id="menu">

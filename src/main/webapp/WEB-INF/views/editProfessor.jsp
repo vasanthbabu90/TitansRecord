@@ -9,10 +9,10 @@
 <body>
 
 	<div style="width: 400px">
-		<form:form modelAttribute="editProfessor" action="editProfessor" >			 
+		<form:form modelAttribute="editProfessor" action="editProfessor">
 			<fieldset>
 				<legend>Professor's Information :</legend>
-				<form:hidden path="id"/>
+				<form:hidden path="id" />
 				<p>
 					<form:label path="fullName">
 						<spring:message code="professor.fullName" />
@@ -25,10 +25,10 @@
 					</form:label>
 					<form:input path="gender" />
 				</p>
-					<%-- <div style="text-align: center;">
+				<%-- <div style="text-align: center;">
 					<form:errors path="fullName" cssStyle="color : red;" />
 				</div> --%>
-				
+
 				<p>
 					<form:label path="email">
 						<spring:message code="professor.email" />
@@ -41,7 +41,7 @@
 					</form:label>
 					<form:input path="phone" />
 				</p>
-							
+
 				<p id="buttons">
 					<input id="reset" type="reset" tabindex="4"> <input
 						id="submit" type="submit" tabindex="5" value="Update">

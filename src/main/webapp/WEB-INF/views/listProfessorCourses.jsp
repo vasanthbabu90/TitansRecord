@@ -8,11 +8,10 @@
 <html>
 <body>
 	<div>
-		<br>		 
-		<br>
+		<br> <br>
 		<table border="1">
 			<tr>
-				<th>Professor Name </th>
+				<th>Professor Name</th>
 				<th>Course Name</th>
 				<th>Start Date</th>
 				<th>End Date</th>

@@ -15,7 +15,8 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<!-- <mvc:annotation-driven /> -->
 	<context:component-scan base-package="edu.waa.portal" />
-	<mvc:annotation-driven validator="validator" conversion-service="conversionService"  />
+	<mvc:annotation-driven validator="validator"
+		conversion-service="conversionService" />
 
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
@@ -31,11 +32,8 @@
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="2" />
 	</bean>
-<!-- 
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="10240000" />
-	</bean> -->
+	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
+		<property name="maxUploadSize" value="10240000" /> </bean> -->
 
 	<bean id="tilesViewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
@@ -43,6 +41,17 @@
 			value="org.springframework.web.servlet.view.tiles3.TilesView" />
 		<property name="order" value="-2" />
 	</bean>
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages" />
+	</bean>
+
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="validationMessageSource" ref="messageSource" />
+	</bean>
+
 
 	<context:component-scan base-package="edu.waa.portal" />
 
@@ -56,18 +65,15 @@
 		</property>
 	</bean>
 
-	<bean id="messageSource"
-		class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basename" value="messages" />
+	<bean id="conversionService"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="formatters">
+			<set>
+				<bean class="edu.waa.portal.formatter.PhoneFormatter">
+				</bean>
+			</set>
+		</property>
 	</bean>
-	<bean id="validator"
-		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
-		<property name="validationMessageSource" ref="messageSource" />
-	</bean>
-
-	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean"> 
-		<property name="formatters"> <set> <bean class="edu.waa.portal.formatter.PhoneFormatter"> 
-		</bean> </set> </property> </bean>
 
 	<mvc:interceptors>
 		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">

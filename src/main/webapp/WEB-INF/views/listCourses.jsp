@@ -18,6 +18,7 @@
 				<th>Course Description</th>
 				<th>Course Level</th>
 				<th>Action</th>
+				<th>GetStudents</th>
 
 			</tr>
 			<c:forEach items="${courses}" var="course">
@@ -25,9 +26,10 @@
 					<td>${course.courseName}</td>
 					<td>${course.courseDescription}</td>
 					<td>${course.courseLevel}</td>
-					<th>Edit|Delete</th>
+					<td>Edit|Delete</td>
+					<td><a
+						href="getStudentsWithCourse?course=${course.courseLevel}">GetStudents</a></td>
 				</tr>
-
 			</c:forEach>
 		</table>
 	</div>

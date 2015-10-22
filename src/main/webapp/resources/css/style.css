@@ -19,7 +19,7 @@ body {
 	color: #5A6466;
 }
 
-body,input {
+body, input {
 	font-family: Kreon, serif;
 }
 
@@ -27,7 +27,7 @@ br.clearfix {
 	clear: both;
 }
 
-h1,h2,h3,h4 {
+h1, h2, h3, h4 {
 	text-transform: uppercase;
 	font-weight: normal;
 }
@@ -36,7 +36,7 @@ h2 {
 	font-size: 1.5em;
 }
 
-h2,h3,h4 {
+h2, h3, h4 {
 	font-family: "Open Sans", sans-serif;
 	color: #2A3436;
 	margin-bottom: 1em;
@@ -88,7 +88,7 @@ a {
 #footer {
 	padding: 50px 0 80px 0;
 	text-align: center;
-	text-shadow: 1px 1px 0px rgba(255,255,255,0.7);
+	text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.7);
 	color: #587477;
 }
 
@@ -152,7 +152,7 @@ a {
 	background: #F2EBDE;
 	border: solid 1px #BFB5A4;
 	box-shadow: inset 0px 0px 0px 1px #fff;
-	text-shadow: 1px 1px 0px rgba(255,255,255,0.9);
+	text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.9);
 }
 
 #menu ul li.active a {
@@ -198,7 +198,7 @@ a {
 	width: 898px;
 	border-top: solid 1px #BFB5A4;
 	box-shadow: inset 0px 0px 0px 1px #fff;
-	text-shadow: 1px 1px 0px rgba(255,255,255,0.9);
+	text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.9);
 }
 
 #page-bottom a {
@@ -243,7 +243,7 @@ a {
 	padding: 20px;
 	border: solid 1px #D6E0E2;
 	margin: 0 10px 0 0;
-	text-shadow: 1px 1px 0px rgba(255,255,255,1);
+	text-shadow: 1px 1px 0px rgba(255, 255, 255, 1);
 	box-shadow: inset 0px 0px 0px 1px #fff;
 }
 
@@ -252,39 +252,40 @@ a {
 	position: relative;
 	background: #FFF;
 	margin: 0 auto 0 auto;
-	box-shadow: 0px 0px 150px 0px rgba(0,0,0,0.15);
+	box-shadow: 0px 0px 150px 0px rgba(0, 0, 0, 0.15);
 	border: solid 1px #82A7AD;
 	border-top: 0;
 }
 
 form {
-  font:100% verdana;
-  min-width: 500px;
-  max-width: 800px;
-  width: 700px;
+	font: 100% verdana;
+	min-width: 500px;
+	max-width: 800px;
+	width: 700px;
 }
 
 form fieldset {
-  border-color: #bdbebf;
-  border-width: 3px;
-  margin: 0;
+	border-color: #bdbebf;
+	border-width: 3px;
+	margin: 0;
 }
 
 legend {
-    font-size: 1.3em;
+	font-size: 1.3em;
 }
 
-form label { 
-    width: 250px;
-    display: block;
-    float: left;
-    text-align: right;
-    padding: 2px;
+form label {
+	width: 250px;
+	display: block;
+	float: left;
+	text-align: right;
+	padding: 2px;
 }
 
 #buttons {
-    text-align: right;
+	text-align: right;
 }
-table{
+
+table {
 	background-color: #CCCCFF
 }

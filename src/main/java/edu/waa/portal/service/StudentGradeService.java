@@ -8,5 +8,11 @@ import edu.waa.portal.model.*;
 public interface StudentGradeService {
 
 	public void updateStudentGrade(Map<Integer,String> studentGrades) ;
+	
+	public List<StudentCourseEnrolled> getStudentsWithCourse(int courseLevel);
+	
+	public StudentCourseEnrolled getStudentEnrolledById(int enrollmentId);
+
+	public void updateStudentGrade(StudentCourseEnrolled studentEnrolled);	
 	 
 }

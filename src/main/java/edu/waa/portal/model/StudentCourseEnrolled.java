@@ -5,6 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
+
 @Entity
 public class StudentCourseEnrolled 
 {
@@ -12,28 +15,29 @@ public class StudentCourseEnrolled
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int enrolledId;
 	
-	private int CourseId;
+	@Range(min = 100,max = 999, message = "{Size.Number.validation}")
+	private int courseIdLevel;
 	
-	private String courseDescription;	
-	
+	@NotEmpty
+	private String courseDescription;
+		
 	private int studentID;
 	
 	private String grade;
 
-
-	/*public StudentCourseEnrolled()
+	public StudentCourseEnrolled()
 	{
 		
 	}
 	
 	
 	
-	public StudentCourseEnrolled(int courseId, String courseDescription, int studentID) {
+	public StudentCourseEnrolled(int courseIdLevel, String courseDescription, int studentID) {
 		super();
-		CourseId = courseId;
+		this.courseIdLevel = courseIdLevel;
 		this.courseDescription = courseDescription;
 		this.studentID = studentID;
-	}*/
+	}
 
 
 
@@ -57,14 +61,13 @@ public class StudentCourseEnrolled
 	}
 
 
-	public int getCourseId() {
-		return CourseId;
+	public int getCourseIdLevel() {
+		return courseIdLevel;
 	}
 
-	public void setCourseId(int courseId) {
-		CourseId = courseId;
+	public void setCourseIdLevel(int courseIdLevel) {
+		this.courseIdLevel = courseIdLevel;
 	}
-
 
 	public String getCourseDescription() {
 		return courseDescription;

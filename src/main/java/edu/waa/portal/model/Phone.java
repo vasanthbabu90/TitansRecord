@@ -7,9 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Range;
 
 @Entity
 public class Phone implements Serializable {
@@ -17,14 +16,18 @@ public class Phone implements Serializable {
 	}
 
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	//@NotNull @Min(100) @Max(999)
+	
+	@Range(min = 100,max = 999, message = "{Size.Number.validation}")
 	private int area;
-	//@NotNull @Min(100) @Max(999)
+	
+	@Range(min = 100,max = 999, message = "{Size.Number.validation}")
 	private int prefix;
-	//@NotNull @Min(100) @Max(999)
+	
+	@Range(min = 100,max = 999, message = "{Size.Number.validation}")
 	private int number;
 
 	public Phone(int area, int prefix, int number) {
@@ -56,4 +59,12 @@ public class Phone implements Serializable {
 	public void setPrefix(int prefix) {
 		this.prefix = prefix;
 	}
+
+	@Override
+	public String toString() {
+		return "Phone [area=" + area + ", prefix=" + prefix + ", number=" + number + "]";
+	}
+	
+	
+	
 }

@@ -3,45 +3,91 @@ package edu.waa.portal.model;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
+
 
 @Entity
-public class Student {
+public class Student {	
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-	@NotEmpty
-	private String studentId;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int studentId;
+	
 	@NotEmpty
 	private String fullName;
+	
+	@NotNull
+	@DateTimeFormat(pattern="MM/dd/yyyy")
 	private Date dob;
+	
 	@NotEmpty
 	private String gender;
+	
 	@Email
 	private String email;
-
-	// private List<Course> Courses;
+	
+	@NotEmpty
+	private String password;
+	
+	@NotNull
+	@DateTimeFormat(pattern="MM/dd/yyyy")
 	private Date entryDate;
-
+	
+	@Column(nullable=true)
+	//@UserName
+	private String userName;
+	
+	@Column(nullable=true)
+	private Boolean imageUploadedOrNot = false;
+	@Transient //it will not save in DB
+	//@JsonIgnore  //to make it deserilize not serilize
+ 	private MultipartFile productImage;
+	
+	
+	@NotEmpty
+	@Size(min=10,max=10,message = "{Phone.Number.validation}")
 	@Valid
 	@OneToOne(cascade = CascadeType.ALL)
 	private Phone phone;
 
-	public int getId() {
-		return id;
+
+	public Student()
+	{
+		
+	}
+	
+
+
+	
+
+	public Student(String fullName, Date dob, String gender, String email, String password, String userName,
+			Date entryDate) {
+		super();
+		this.fullName = fullName;
+		this.dob = dob;
+		this.gender = gender;
+		this.email = email;
+		this.password = password;
+		this.userName = userName;
+		this.entryDate = entryDate;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
+
 
 	public Phone getPhone() {
 		return phone;
@@ -51,13 +97,55 @@ public class Student {
 		this.phone = phone;
 	}
 
-	public String getStudentId() {
+
+
+
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	public Boolean getImageUploadedOrNot() {
+		return imageUploadedOrNot;
+	}
+
+
+	public void setImageUploadedOrNot(Boolean imageUploadedOrNot) {
+		this.imageUploadedOrNot = imageUploadedOrNot;
+	}
+
+
+	@XmlTransient
+	public MultipartFile getProductImage() {
+		return productImage;
+	}
+	public void setProductImage(MultipartFile productImage) {
+		this.productImage = productImage;
+	}
+	
+	public int getStudentId() {
 		return studentId;
 	}
 
-	public void setStudentId(String studentId) {
+
+	public void setStudentId(int studentId) {
 		this.studentId = studentId;
 	}
+
 
 	public String getGender() {
 		return gender;

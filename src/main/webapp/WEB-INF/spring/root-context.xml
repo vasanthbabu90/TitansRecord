@@ -11,7 +11,7 @@
       http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
 
-	<jpa:repositories base-package="edu.waa.portal.repositories"/>
+	<jpa:repositories base-package="edu.waa.portal.repositories" />
 
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -31,6 +31,8 @@
 			/> </property> -->
 	</bean>
 
+ 
+
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -38,7 +40,7 @@
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>
- 
+
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
